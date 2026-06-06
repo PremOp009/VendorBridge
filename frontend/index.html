@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VendorBridge ERP — Procurement & Vendor Management</title>
+  <meta name="description" content="VendorBridge is a modern enterprise procurement ERP for managing vendors, RFQs, quotations, purchase orders, and invoices." />
+  <meta name="keywords" content="procurement, vendor management, ERP, purchase orders, invoices, RFQ" />
+  <meta name="author" content="VendorBridge" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="VendorBridge ERP" />
+  <meta property="og:description" content="Modern Procurement & Vendor Management ERP" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌉</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+
+
+</head>
+<body>
+
+<!-- ── GLOBALS BOOTSTRAP — must run before ANY other script ───── -->
+<script>
+  // Pre-initialize all global namespaces so page scripts can safely
+  // register into them even before app.js (which defines the Router) loads.
+  window.Pages  = {};
+  window.Router = { go: function(p){ window.location.hash = p; } };
+</script>
+
+<!-- ── AUTH PAGES (shown when not logged in) ─────────────────── -->
+<div id="auth-page" style="display:flex; min-height:100vh;">
+  <div style="display:flex;align-items:center;justify-content:center;width:100%;
+              background:linear-gradient(135deg,#2a1a12,#674636);">
+    <div class="spinner"
+         style="width:48px;height:48px;border-width:4px;
+                border-top-color:white;border-color:rgba(255,255,255,0.2);">
+    </div>
+  </div>
+</div>
+
+<!-- ── APP SHELL (shown when logged in) ──────────────────────── -->
+<div id="app" style="display:none;">
+  <aside id="sidebar"></aside>
+  <div id="main">
+    <header id="topbar"></header>
+    <main id="page-content" role="main" aria-live="polite"></main>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<!-- ── JAVASCRIPT ─────────────────────────────────────────────── -->
+
+<!-- Chart.js (load before our scripts so dashboard can use it) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+<!-- Core utilities -->
+<script src="js/auth.js"></script>
+<script src="js/state.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+
+<!-- Components -->
+<script src="components/toast.js"></script>
+<script src="components/modal.js"></script>
+<script src="components/sidebar.js"></script>
+<script src="components/topbar.js"></script>
+
+<!-- Pages — each file registers itself onto window.Pages -->
+<script src="pages/login.js"></script>
+<script src="pages/register.js"></script>
+<script src="pages/dashboard.js"></script>
+<script src="pages/vendors.js"></script>
+<script src="pages/rfqs.js"></script>
+<script src="pages/quotations.js"></script>
+<script src="pages/comparison.js"></script>
+<script src="pages/approvals.js"></script>
+<script src="pages/purchase-orders.js"></script>
+<script src="pages/invoices.js"></script>
+<script src="pages/reports.js"></script>
+<script src="pages/activity-logs.js"></script>
+
+<!-- App router — overwrites the stub Router with the real one, then boots -->
+<script src="js/app.js"></script>
+
+</body>
+</html>
